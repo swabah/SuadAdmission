@@ -4,7 +4,7 @@ import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import Home from "./Pages/Home";
 import './App.css'
 import GetID from "./Pages/GetID";
-import Admition from "./Pages/Admition";
+import Admission from "./Pages/Admission";
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   <Router>
     <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/admition"  element={<Admition/>} />
+        <Route path="/Admission"  element={<Admission/>} />
         <Route path="/GetID" element={<GetID/>} />
     </Routes>
   </Router>

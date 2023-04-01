@@ -10,8 +10,8 @@ function Nav() {
     //   url: '/'
     // },
     {
-      name: 'Admition',
-      url: '/Admition'
+      name: 'Admission',
+      url: '/Admission'
     },
     // {
     //   name: 'Get ID',

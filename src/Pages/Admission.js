@@ -2,7 +2,7 @@ import React from 'react'
 import Nav from '../Components/Nav'
 import Form from '../Registration/GoogleForm/Form'
 
-function Admition() {
+function Admission() {
   return (
     <div>
         <Nav/>
@@ -14,4 +14,4 @@ function Admition() {
   )
 }
 
-export default Admition
+export default Admission

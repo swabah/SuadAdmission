@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import IMG from '../assets/img/IMG_2747.JPG'
+
 function Home() {
   const itemsStart = [
     {
@@ -24,7 +26,8 @@ function Home() {
     },
   ];
   return (
-    <div className='w-full h-screen bg-white px-5 md:px-20 lg:px-32 lg:py-12 flex items-center justify-center'>
+    <div style={{backgroundImage: `url(${IMG})`}} className='w-full h-screen bg-no-repeat bg-center bg-cover' >
+    <div className='w-full h-full  bg-white bg-opacity-80 px-5 md:px-20 lg:px-32 lg:py-12 flex items-center justify-center'>
       <div className='rounded  py-20 w-auto h-auto flex flex-col items-center text-center justify-center'>
         <h2 className='font-extrabold text-transparent opacity-90 text-4xl md:text-5xl lg:text-6xl xl:text-7xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 drop-shadow-md'>Experience Ahlussuffa</h2>
         <p className='text-base md:text-lg lg:text-xl opacity-80 xl:text-2xl antialiased mt-2 lg:mt-3 tracing-widest font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-600 drop-shadow-lg'>Admition is now opened</p>
@@ -42,6 +45,7 @@ function Home() {
         </div>
       </div>
 
+    </div>
     </div>
   )
 }
