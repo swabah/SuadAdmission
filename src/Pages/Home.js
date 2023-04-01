@@ -6,7 +6,7 @@ function Home() {
   const itemsStart = [
     {
       name: 'Regstration Here',
-      url: '/Admition',
+      url: '/Admission',
       detiles :'Welcome To Our World'
     },
     // {
