@@ -6,7 +6,7 @@ function GetID() {
     <div>
     <Nav/>
     <div className='w-full h-full px-20 pt-12 flex items-ceneter justify-center'>
-      
+      Get id 
     </div>
     </div>
   )
