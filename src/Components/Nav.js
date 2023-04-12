@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../assets/img/ahlussuffalogo.png'
 import { useState } from 'react'
 import { Dialog, Disclosure} from '@headlessui/react'
-import { FaAlignRight, FaChevronCircleDown } from 'react-icons/fa'
+import { FaAlignRight, FaShareSquare,} from 'react-icons/fa'
 
 
 function Nav() {
@@ -24,10 +24,6 @@ function Nav() {
     //   name: 'Login',
     //   url: '/Login'
     // },
-    {
-      name: 'Visit Official website',
-      url: '/https://ahlussuffadars.vercel.app/'
-    },
   ];
 
   function classNames(...classes) {
@@ -49,6 +45,10 @@ function Nav() {
                     <li className="text-lg text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100 uppercase">{item.name}</li>
                 </Link>
               ))}
+              <Link className=' p-1 px-3 rounded-full border-2 flex items-center space-x-2.5' to='/https://ahlussuffadars.vercel.app/'>
+                    <li className=" text-base text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100">Ahlussuffa.in</li>
+                    <FaShareSquare/>
+              </Link>
            </ul>
              <div className="flex lg:hidden">
               <button
@@ -57,7 +57,7 @@ function Nav() {
                 onClick={() => setDropdownOpen(true)} 
               >
                 <span className="sr-only">Open main menu</span>
-                <FaAlignRight className={`h-6 w-6 text-black} `} aria-hidden="true" />
+                <FaAlignRight className={`h-6 w-6 text-black `} aria-hidden="true" />
               </button>
             </div>
          </nav>
@@ -93,11 +93,17 @@ function Nav() {
                              <>
                                {navbarItems.map((item) => (
                                  <Link className='' to={`${item.url}`} onClick={() => setDropdownOpen(false)}>
-                                    <Disclosure.Button className="flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200 border-b">
+                                    <Disclosure.Button className="flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
                                       {item.name}
                                     </Disclosure.Button>
                                 </Link>
                                 ))}
+                                <Link className=' ' to='/https://ahlussuffadars.vercel.app/'>
+                                <Disclosure.Button className=" p-1 px-3 rounded-full border-2 flex items-center space-x-2.5 flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
+                                    <li className="list-none text-base text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100">Ahlussuffa.in</li>
+                                    <FaShareSquare/>
+                                </Disclosure.Button>
+                               </Link>
                              </>
                            )}
                          </Disclosure>
