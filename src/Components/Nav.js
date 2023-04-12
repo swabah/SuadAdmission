@@ -24,6 +24,10 @@ function Nav() {
     //   name: 'Login',
     //   url: '/Login'
     // },
+    {
+      name: 'Visit Official website',
+      url: '/https://ahlussuffadars.vercel.app/'
+    },
   ];
 
   function classNames(...classes) {
@@ -69,7 +73,7 @@ function Nav() {
                          onClick={() => setDropdownOpen(false)}
                          className="h-10 w-auto md:hidden"
                          src={logo}
-                         alt=""
+                         alt="logo"
                        />
                      </div>
                      <button
