@@ -6,10 +6,8 @@
 }
 body{
     font-family: 'Ubuntu';
-    /* display: inline-block; */
     overflow-x: hidden;
     position: relative;
-    background-color: hwb(0 62% 36% / 0.215);
 }
 body::-webkit-scrollbar {
     width: 3px;

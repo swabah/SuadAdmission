@@ -1,55 +1,73 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../assets/img/ahlussuffalogo.png'
 import { useState } from 'react'
 import { Dialog, Disclosure} from '@headlessui/react'
 import { FaAlignRight, FaShareSquare,} from 'react-icons/fa'
+import { signOut } from 'firebase/auth'
+import { auth } from '../firebase/Firebase'
+import { FiLoader } from 'react-icons/fi'
 
 
-function Nav() {
+function Nav({setIsAuth,IsAuth}) {
+  const [Loader,setLoader] = useState(false)
+  const navigate = useNavigate()
   const navbarItems = [
-    // {
-    //   name: 'Home',
-    //   url: '/'
-    // },
     {
-      name: 'Admission',
-      url: '/Admission'
+      name: 'Home',
+      url: '/'
     },
     // {
-    //   name: 'Get ID',
-    //   url: '/GetID'
+    //   name: 'Admission',
+    //   url: '/Admission'
     // },
-    // {
-    //   name: 'Login',
-    //   url: '/Login'
-    // },
+    {
+      name: 'Get ID',
+      url: '/GetID'
+    },
   ];
 
-  function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-   }
 
   const [DropdownOpen, setDropdownOpen] = useState(false)
 
+  const signOutApplicant = async () =>{
+    setLoader(true)
+    try {
+       await signOut(auth).then(()=>{
+        localStorage.setItem('IsAuth',false)
+        console.log('is log outed');
+        setTimeout(() => {
+          navigate('/')
+        }, 5000);
+      })
+      setIsAuth(false)
+      setLoader(false)
+    } catch (error) {
+      
+    }
+  }
 
   return (
-    <header className='w-full bg-[#ffff] backdrop-blur-md  bg-opacity-50 text-[#1c415d] shadow-lg transition duration p-5 py-3.5 h-16 md:h-20 lg:h-24  md:px-20 flex items-center justify-between'>
-         <Link className=''>
-           <img className='h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20 bg-center object-fill drop-shadow-sm' src={logo} alt="Logo" />
+    <header className='w-full bg-[#ffff] text-[#1c415d] shadow-sm p-3 py-3.5 h-16 md:h-20 lg:h-24   lg:px-12  xl:px-44  flex items-center justify-between'>
+         <Link to='/'>
+           <img className='h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20  bg-center object-fill drop-shadow-sm' src={logo} alt="Logo" />
          </Link>
          <nav className='flex items-center'>
-           <ul className="w-full h-auto hidden lg:flex items-center space-x-6">
-              {navbarItems.map((item) => (
+           <div className="w-full h-auto hidden lg:flex items-center space-x-6">
+              {navbarItems.map((item,index) => (
                 <Link className='' to={`${item.url}`}>
-                    <li className="text-lg text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100 uppercase">{item.name}</li>
+                    <span key={index} className="text-lg text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase">{item.name}</span>
                 </Link>
               ))}
-              <Link className=' p-1 px-3 rounded-full border-2 flex items-center space-x-2.5' to='/https://ahlussuffadars.vercel.app/'>
+                  <span onClick={signOutApplicant} className={`text-lg space-x-1.5 ${Loader && 'opacity-50 text-red-800'} flex items-center text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase`}>
+                    <h1>log out </h1> 
+                  {Loader && <span className=' animate-spin'><FiLoader/></span>}
+                  </span>
+              {/* <Link className=' p-1 px-3 rounded-full border-2 flex items-center space-x-2.5' to='/https://ahlussuffadars.vercel.app/'>
                     <li className=" text-base text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100">Ahlussuffa.in</li>
                     <FaShareSquare/>
-              </Link>
-           </ul>
+              </Link> */}
+           </div>
              <div className="flex lg:hidden">
               <button
                 type="button"
@@ -98,6 +116,12 @@ function Nav() {
                                     </Disclosure.Button>
                                 </Link>
                                 ))}
+                                 <Disclosure.Button  onClick={() => setDropdownOpen(false)}>
+                                    <li onClick={signOutApplicant} className="flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
+                                    <h1>Log out </h1> 
+                                    {Loader && <span className='ml-1.5 animate-xl'><FiLoader/></span>}
+                                    </li>
+                                </Disclosure.Button>
                                 <Link className=' ' to='/https://ahlussuffadars.vercel.app/'>
                                 <Disclosure.Button className=" p-1 px-3 rounded-full border-2 flex items-center space-x-2.5 flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
                                     <li className="list-none text-base text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100">Ahlussuffa.in</li>
