@@ -7,9 +7,12 @@ import { FaAlignRight, FaShareSquare,} from 'react-icons/fa'
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase/Firebase'
 import { FiLoader } from 'react-icons/fi'
+import {  selectUserName,setUserLogoutSTate } from '../redux/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import SignoutModal from '../assets/SignoutModal'
 
 
-function Nav({setIsAuth,IsAuth}) {
+function Nav() {
   const [Loader,setLoader] = useState(false)
   const navigate = useNavigate()
   const navbarItems = [
@@ -17,35 +20,38 @@ function Nav({setIsAuth,IsAuth}) {
       name: 'Home',
       url: '/'
     },
-    // {
-    //   name: 'Admission',
-    //   url: '/Admission'
-    // },
+    {
+      name: 'Admission',
+      url: '/Admission'
+    },
     {
       name: 'Get ID',
       url: '/GetID'
     },
   ];
 
+  const dispatch = useDispatch()
+  const userName = useSelector(selectUserName)
 
   const [DropdownOpen, setDropdownOpen] = useState(false)
+  
 
-  const signOutApplicant = async () =>{
-    setLoader(true)
-    try {
-       await signOut(auth).then(()=>{
-        localStorage.setItem('IsAuth',false)
-        console.log('is log outed');
-        setTimeout(() => {
-          navigate('/')
-        }, 5000);
-      })
-      setIsAuth(false)
-      setLoader(false)
-    } catch (error) {
-      
+  const [showModal, setShowModal] = useState(false);
+
+  function showSignoutModal() {
+    if (!showModal) {
+      document
+        .getElementsByTagName('html')[0]
+        .classList.add('overflow-y-hidden');
+      setShowModal(true);
+    } else {
+      document
+        .getElementsByTagName('html')[0]
+        .classList.remove('overflow-y-hidden');
+      setShowModal(false);
     }
   }
+
 
   return (
     <header className='w-full bg-[#ffff] text-[#1c415d] shadow-sm p-3 py-3.5 h-16 md:h-20 lg:h-24   lg:px-12  xl:px-44  flex items-center justify-between'>
@@ -59,10 +65,11 @@ function Nav({setIsAuth,IsAuth}) {
                     <span key={index} className="text-lg text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase">{item.name}</span>
                 </Link>
               ))}
-                  <span onClick={signOutApplicant} className={`text-lg space-x-1.5 ${Loader && 'opacity-50 text-red-800'} flex items-center text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase`}>
+                 {userName &&( <span onClick={showSignoutModal} className={`text-lg space-x-1.5 ${Loader && 'opacity-50 text-red-800'} flex items-center text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase`}>
                     <h1>log out </h1> 
                   {Loader && <span className=' animate-spin'><FiLoader/></span>}
-                  </span>
+                  </span>)}
+              
               {/* <Link className=' p-1 px-3 rounded-full border-2 flex items-center space-x-2.5' to='/https://ahlussuffadars.vercel.app/'>
                     <li className=" text-base text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100">Ahlussuffa.in</li>
                     <FaShareSquare/>
@@ -116,12 +123,14 @@ function Nav({setIsAuth,IsAuth}) {
                                     </Disclosure.Button>
                                 </Link>
                                 ))}
+                                {userName && (
                                  <Disclosure.Button  onClick={() => setDropdownOpen(false)}>
-                                    <li onClick={signOutApplicant} className="flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
+                                    <li onClick={showSignoutModal} className="flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
                                     <h1>Log out </h1> 
                                     {Loader && <span className='ml-1.5 animate-xl'><FiLoader/></span>}
                                     </li>
                                 </Disclosure.Button>
+                                )}
                                 <Link className=' ' to='/https://ahlussuffadars.vercel.app/'>
                                 <Disclosure.Button className=" p-1 px-3 rounded-full border-2 flex items-center space-x-2.5 flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
                                     <li className="list-none text-base text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100">Ahlussuffa.in</li>
@@ -136,6 +145,13 @@ function Nav({setIsAuth,IsAuth}) {
                    </div>
                  </Dialog.Panel>
                </Dialog>
+               {showModal ? (
+			         	<SignoutModal
+			         		onClose={showSignoutModal}
+			         		onRequest={showSignoutModal}
+			         	/>
+			         ) : null}
+			         {showModal ? showSignoutModal : null}
              </header>
   )
 }

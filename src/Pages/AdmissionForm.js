@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { auth, db } from '../firebase/Firebase'
 import {collection,addDoc} from 'firebase/firestore'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Isuser, selectUserEmail, selectUserName } from '../redux/userSlice';
 
 function AdmissionForm() {
+    const userName = useSelector(selectUserName)
+    const userEmail = useSelector(selectUserEmail)
 
   const [formData, setFormData] = useState({
     AplName:'',
@@ -35,9 +39,7 @@ function AdmissionForm() {
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
-
     const newValue = type === 'checkbox' ? checked : value;
-
     setFormData((prevData) => ({
       ...prevData,
       [name]: newValue
@@ -85,13 +87,24 @@ function AdmissionForm() {
         }
    };
 
+ 
+
   return (
     <div className=" w-full h-full">
         <div className='w-full h-full  flex items-ceneter justify-center'>
             <div className='w-full p-3 lg:px-12 py-16 md:py-20 xl:px-44 space-y-20 md:space-y-16 xl:space-y-32 rounded-md h-full'>
+              <div className='flex md:flex-row flex-col items-center md:justify-between w-full'>
               <h2 className='text-2xl xl:text-4xl bg-clip-text bg-gradient-to-r font-medium from-green-800 to-lime-600 bg-clip-text text-transparent drop-shadow-sm'>
                <span className='text-3xl xl:text-5xl '>R</span> 
                 EGISTRATION</h2>
+                {userName && (
+                <div className='w-full text-end'>
+                  <h2>{userName}</h2>
+                  <h4 className='text-xs'>{userEmail}</h4>
+                </div>
+                )}
+              </div>
+              <Link to='/'><span className='pl-1 underline text-blue-900'>Tap here</span></Link>
               <div className="lg:col-span-2">
                 <form onSubmit={handleSubmit}  className="grid gap-3 lg:gap-5 gap-y-5 text-sm grid-rows-auto grid-cols-1 md:grid-cols-6">
                   <div className="md:col-span-3">
@@ -123,7 +136,7 @@ function AdmissionForm() {
                     <input name='MotherTou'  type="text" value={formData.MotherTou} onChange={handleInputChange}  placeholder='Mother’s Tough' className="p-0 py-2 mt-2 ring-0 border-gray-300 outline-none border-0 border-b placeholder:font-normal placeholder:opacity-50 placeholder:text-black w-full "/>
                   </div>
                   <div className="md:col-span-3">
-                    <input required type="tel" onChange={handleInputChange} value={formData.GuardianContact} placeholder='Whatsapp Number ' name="GuardianContact" className=" oldstyle-nums p-0 py-2 mt-2 ring-0 border-gray-300 outline-none border-0 border-b placeholder:font-normal placeholder:opacity-50 placeholder:text-black w-full " />
+                    <input required type="tel" onChange={handleInputChange} value={formData.GuardianContact} placeholder='Guardian Number' name="GuardianContact" className=" oldstyle-nums p-0 py-2 mt-2 ring-0 border-gray-300 outline-none border-0 border-b placeholder:font-normal placeholder:opacity-50 placeholder:text-black w-full " />
                   </div>
                   <div className="md:col-span-3">
                     <input required type="tel" onChange={handleInputChange} value={formData.MoNumberOne} placeholder='Mobile Number(primary)' name="MoNumberOne" className=" oldstyle-nums p-0 py-2 mt-2 ring-0 border-gray-300 outline-none border-0 border-b placeholder:font-normal placeholder:opacity-50 placeholder:text-black w-full " />

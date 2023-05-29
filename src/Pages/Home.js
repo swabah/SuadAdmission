@@ -3,19 +3,13 @@ import IMG from '../assets/img/IMG_2747.JPG'
 import './style.css'
 import { FaArrowRight } from 'react-icons/fa';
 import SignupModal from '../assets/SingupModal';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
-function Home(IsAuth,setIsAuth) {
+function Home() {
+
+
   const [showModal, setShowModal] = useState(false);
 
-  const navigate =useNavigate()
-
-  // useEffect(() => {
-  //   if (IsAuth) {
-  //     navigate('/GetID')
-  //   }
-  // }, [IsAuth,navigate]);
-  
   function showSignupModal() {
     if (!showModal) {
       document
@@ -51,7 +45,6 @@ function Home(IsAuth,setIsAuth) {
       </div>
       {showModal ? (
 			      	<SignupModal
-                setIsAuth={setIsAuth}
 			      		onClose={showSignupModal}
 			      		onRequest={showSignupModal}
 			      	/>
