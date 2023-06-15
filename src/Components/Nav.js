@@ -1,19 +1,14 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from '../assets/img/ahlussuffalogo.png'
 import { useState } from 'react'
 import { Dialog, Disclosure} from '@headlessui/react'
-import { FaAlignRight, FaShareSquare,} from 'react-icons/fa'
-import { signOut } from 'firebase/auth'
+import { FaAlignRight} from 'react-icons/fa'
 import { auth } from '../firebase/Firebase'
-import { FiLoader } from 'react-icons/fi'
-import {  selectUserName,setUserLogoutSTate } from '../redux/userSlice'
-import { useDispatch, useSelector } from 'react-redux'
 import SignoutModal from '../assets/SignoutModal'
 
 
 function Nav() {
-  const [Loader,setLoader] = useState(false)
   const navbarItems = [
     {
       name: 'Home',
@@ -62,9 +57,8 @@ function Nav() {
                     <span key={index} className="text-lg text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase">{item.name}</span>
                 </Link>
               ))}
-                 {auth.currentUser &&( <span onClick={showSignoutModal} className={`text-lg space-x-1.5 ${Loader && 'opacity-50 text-red-800'} flex items-center text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase`}>
+                 {auth.currentUser &&( <span onClick={showSignoutModal} className={`text-lg space-x-1.5 flex items-center text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase`}>
                     <h1>log out </h1> 
-                  {Loader && <span className=' animate-spin'><FiLoader/></span>}
                   </span>)}
            </div>
              <div className="flex lg:hidden">
@@ -119,7 +113,6 @@ function Nav() {
                                  <Disclosure.Button  onClick={() => setDropdownOpen(false)}>
                                     <li onClick={showSignoutModal} className="flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
                                     <h1>Log out </h1> 
-                                    {Loader && <span className='ml-1.5 animate-xl'><FiLoader/></span>}
                                     </li>
                                 </Disclosure.Button>
                                 )}

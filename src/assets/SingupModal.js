@@ -6,8 +6,8 @@ import { auth, googleProvider } from '../firebase/Firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import {toast} from 'react-toast'
-import {useDispatch,useSelector} from 'react-redux'
-import { selectUserName, selectallStudents, setActiveUser } from '../redux/userSlice';
+import {useDispatch} from 'react-redux'
+import {  setActiveUser } from '../redux/userSlice';
 
 const SignupModal = ({ onClose, onRequest }) => {
     const [Loading , setLoading] = useState(false)

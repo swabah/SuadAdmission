@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
-// import Layout from "./assets/Layout";
 import Home from "./Pages/Home";
 import './App.css'
 import GetID from "./Pages/GetID";

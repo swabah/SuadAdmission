@@ -4,7 +4,6 @@ import { FiLoader, FiLogOut, FiX } from 'react-icons/fi';
 import { auth } from '../firebase/Firebase';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toast';
 import { useDispatch } from 'react-redux';
 import { setUserLogoutSTate } from '../redux/userSlice';
 

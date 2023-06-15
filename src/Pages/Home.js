@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import IMG from '../assets/img/IMG_2747.JPG'
 import './style.css'
 import { FaArrowRight } from 'react-icons/fa';

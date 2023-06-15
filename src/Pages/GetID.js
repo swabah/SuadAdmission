@@ -5,12 +5,10 @@ import { auth, db } from '../firebase/Firebase';
 import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import profile from '../assets/img/persondemo.png';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import  NotConnected from '../assets/img/NotConnected.gif'
 
 function GetID() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
   const [shortenedLink, setShortenedLink] = useState('');
 
 
@@ -26,9 +24,8 @@ function GetID() {
         setStudents(allStudents);
         console.log(allStudents);
         setLoading(false);
-        setError(false)
       } catch (error) {
-        setError(true);
+        console.log(error)
       }
     };
 
@@ -56,11 +53,7 @@ function GetID() {
             <FiLoader className="mt-1 text-xl animate-spin" />
           </div>
         )}
-        {error ? <>
-        <div className='w-full flex items-center justify-center h-full'>
-        <img src={NotConnected} alt=''></img>  
-        </div>
-        </> : <>
+        
         <div className={`w-full h-full grid grid-cols-1 md:grid-cols-2 grid-rows-auto gap-5`}>
         {students.map((student, index) => (
           <>
@@ -107,7 +100,6 @@ function GetID() {
           </>
         ))}
         </div>
-        </>}
       </div>
     </div>
   );
