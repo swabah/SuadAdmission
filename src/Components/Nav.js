@@ -14,7 +14,6 @@ import SignoutModal from '../assets/SignoutModal'
 
 function Nav() {
   const [Loader,setLoader] = useState(false)
-  const navigate = useNavigate()
   const navbarItems = [
     {
       name: 'Home',
@@ -30,8 +29,6 @@ function Nav() {
     },
   ];
 
-  const dispatch = useDispatch()
-  const userName = useSelector(selectUserName)
 
   const [DropdownOpen, setDropdownOpen] = useState(false)
   
@@ -65,15 +62,10 @@ function Nav() {
                     <span key={index} className="text-lg text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase">{item.name}</span>
                 </Link>
               ))}
-                 {userName &&( <span onClick={showSignoutModal} className={`text-lg space-x-1.5 ${Loader && 'opacity-50 text-red-800'} flex items-center text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase`}>
+                 {auth.currentUser &&( <span onClick={showSignoutModal} className={`text-lg space-x-1.5 ${Loader && 'opacity-50 text-red-800'} flex items-center text-[#1c415d] cursor-pointer hover:text-[#72bf44] transition font-normal drop-shadow-sm  uppercase`}>
                     <h1>log out </h1> 
                   {Loader && <span className=' animate-spin'><FiLoader/></span>}
                   </span>)}
-              
-              {/* <Link className=' p-1 px-3 rounded-full border-2 flex items-center space-x-2.5' to='/https://ahlussuffadars.vercel.app/'>
-                    <li className=" text-base text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100">Ahlussuffa.in</li>
-                    <FaShareSquare/>
-              </Link> */}
            </div>
              <div className="flex lg:hidden">
               <button
@@ -123,7 +115,7 @@ function Nav() {
                                     </Disclosure.Button>
                                 </Link>
                                 ))}
-                                {userName && (
+                                {auth.currentUser && (
                                  <Disclosure.Button  onClick={() => setDropdownOpen(false)}>
                                     <li onClick={showSignoutModal} className="flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
                                     <h1>Log out </h1> 
@@ -131,12 +123,6 @@ function Nav() {
                                     </li>
                                 </Disclosure.Button>
                                 )}
-                                <Link className=' ' to='/https://ahlussuffadars.vercel.app/'>
-                                <Disclosure.Button className=" p-1 px-3 rounded-full border-2 flex items-center space-x-2.5 flex w-full cursor-pointer items-center justify-between  py-2 pl-3 pr-3.5 text-base text-[#1c415d] hover:text-[#72bf44] font-semibold leading-7 hover:bg-gray-200">
-                                    <li className="list-none text-base text-[#1c415d] hover:text-[#72bf44] font-medium drop-shadow-md shadow-gray-100">Ahlussuffa.in</li>
-                                    <FaShareSquare/>
-                                </Disclosure.Button>
-                               </Link>
                              </>
                            )}
                          </Disclosure>

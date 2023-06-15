@@ -7,14 +7,13 @@ import { signInWithPopup } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import {toast} from 'react-toast'
 import {useDispatch,useSelector} from 'react-redux'
-import { selectUserName, setActiveUser } from '../redux/userSlice';
+import { selectUserName, selectallStudents, setActiveUser } from '../redux/userSlice';
 
 const SignupModal = ({ onClose, onRequest }) => {
     const [Loading , setLoading] = useState(false)
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
-    const userName = useSelector(selectUserName)
 
     const signInWithGoogle = async () =>{
         setLoading(true)
@@ -25,9 +24,13 @@ const SignupModal = ({ onClose, onRequest }) => {
                 userEmail : res.user.email
               }))
             setTimeout(() => {
+              if(!auth.currentUser){
                 navigate('/admission')
-                setLoading(false)
-            }, 3000);
+              }else{
+                navigate('/GetId')
+              }
+              }, 3000);
+            setLoading(false)
             })
             toast.success("Signed With Google!",{
                 backgroundColor: '#8329C5',
@@ -54,7 +57,7 @@ const SignupModal = ({ onClose, onRequest }) => {
 					<div className="modal max-w-md mx-5 xl:max-w-xl lg:max-w-xl md:max-w-xl backdrop-blure-lg bg-white bg-opacity-90 max-h-screen shadow-lg flex-row rounded-lg relative">
 						<div className="modal-header flex justify-between gap-10 p-5 border-b border-gray-200">
 							<h5 className=" text-primary-dark dark:text-primary-light text-xl">
-                {userName ? 'Do you already have an account ?' : 'Welcome, Get an admission !'}
+                {auth.currentUser ? 'Do you already have an account ?' : 'Welcome, Get an admission !'}
 							</h5>
 							<button
 								onClick={onClose}
@@ -63,7 +66,7 @@ const SignupModal = ({ onClose, onRequest }) => {
 								<FiX className="text-3xl" />
 							</button>
 						</div>
-              { userName ? (
+              { auth.currentUser ? (
                 <h2 className='text-sm md:text-base p-5  text-red-800'>You can keep clicking the button.<Link to='/GetId'><span className='pl-1 underline text-blue-900'>Click here</span></Link> </h2>
                 ) : (
 					  	<div className="modal-body p-5 w-full h-full">

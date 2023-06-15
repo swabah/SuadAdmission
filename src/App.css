@@ -2,12 +2,11 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 body{
     font-family: 'Ubuntu';
-    overflow-x: hidden;
     position: relative;
+    overflow-y: scroll;
 }
 body::-webkit-scrollbar {
     width: 3px;

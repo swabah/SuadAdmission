@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import {getFirestore} from 'firebase/firestore'
 import {GoogleAuthProvider, getAuth} from 'firebase/auth'
+import getStorage from "redux-persist/es/storage/getStorage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3TWh7SG9o1fyh77klf8FyHQ9Uq5G6vko",
@@ -14,6 +15,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app)
 export const auth = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
+export const db = getFirestore(app)
+export const storage = getStorage(app);
