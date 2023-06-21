@@ -93,7 +93,7 @@ function GetID() {
                      </div>
                      <div className="">
                        <span className="text-gray-500 text-sm md:text-base font-medium">Submited : </span>
-                       <span className="text-gray-800 capitalize text-sm md:text-base font-medium">{student.SubmitedDate}</span>
+                       <span className="text-gray-800 capitalize text-sm md:text-base font-medium">{student.SubmitedDate} | {student.SubmitedTime}</span>
                      </div>
                      <hr />
                      {/* <div className='w-full  h-auto flex space-y-1 lg:space-y-0 flex-col lg:flex-row items-start lg:items-center justify-between'>

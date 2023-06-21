@@ -102,7 +102,7 @@ function AdmissionForm() {
                 {auth.currentUser  && (
                 <div className='w-full flex flex-col text-red-900 text-end'>
                   <h2 className='text-sm'>user : {auth.currentUser.displayName}</h2>
-                  <h4 className='text-xs'>email : {auth.currentUser.email}</h4>
+                  {/* <h4 className='text-xs'>email : {auth.currentUser.email}</h4> */}
                 </div>
                 )}
               </div>
