@@ -46,7 +46,7 @@ function Nav() {
 
 
   return (
-    <header className='w-full bg-[#ffff] text-[#1c415d] shadow-sm p-3 py-3.5 h-16 md:h-20 lg:h-24   lg:px-12  xl:px-44  flex items-center justify-between'>
+    <header className='w-full bg-[#ffff] text-[#1c415d] shadow-sm py-3.5 h-16 md:h-20 lg:h-24   p-3 lg:px-10 py-12 md:py-16 xl:px-32 flex items-center justify-between'>
          <Link to='/'>
            <img className='h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20  bg-center object-fill drop-shadow-sm' src={logo} alt="Logo" />
          </Link>

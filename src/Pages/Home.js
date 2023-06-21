@@ -37,7 +37,7 @@ function Home() {
             </div> 
             <div  class="p-3 md:p-6 w-full bg-white rounded-xl shadow-lg drop-shadow-xl flex flex-col items-center justify-center space-y-2">
               <p class="text-sm md:text-base text-slate-500">Visit Official website !</p>
-              <Link to='https://ahlussuffadars.vercel.app/'>
+              <Link to='https://ahlussuffadars.in/'>
                   <button id='Rubik'  className='bg-green-800 text-white flex items-center shadow-xl drop-shadow-md text-sm md:text-lg p-1 px-2 md:p-1.5 md:px-4 opacity-90'><span className='pr-1.5 md:pr-3 lg:text-xl capitalize'>Explore Our Experiences</span ><FaArrowRight/></button>
               </Link>
             </div> 

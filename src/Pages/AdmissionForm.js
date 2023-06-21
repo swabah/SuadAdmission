@@ -91,24 +91,23 @@ function AdmissionForm() {
         }
    };
   return (
-    <div className=" w-full h-full overflow-y">
+    <div className=" w-full h-full ">
       <Nav />
-        <div className='w-full h-full  flex items-ceneter justify-center'>
-            <div className='w-full p-3 lg:px-12 py-16 md:py-20 xl:px-44 space-y-20 md:space-y-16 xl:space-y-32 rounded-md h-full'>
+        <div className='w-full h-full p-3 lg:px-10 py-12 md:py-16 xl:px-32 flex items-ceneter justify-center'>
+            <div className='w-full space-y-20 md:space-y-16 xl:space-y-32 h-full'>
               <div className='flex md:flex-row flex-col items-center md:justify-between w-full'>
               <h2 className='text-2xl xl:text-4xl bg-clip-text bg-gradient-to-r font-medium from-green-800 to-lime-600 bg-clip-text text-transparent drop-shadow-sm'>
                <span className='text-3xl xl:text-5xl '>R</span> 
                 EGISTRATION</h2>
                 {auth.currentUser  && (
                 <div className='w-full flex flex-col text-red-900 text-end'>
-                  <h2>{auth.currentUser.displayName}</h2>
-                  <h4 className='text-xs'>{auth.currentUser.email}</h4>
+                  <h2 className='text-sm'>user : {auth.currentUser.displayName}</h2>
+                  <h4 className='text-xs'>email : {auth.currentUser.email}</h4>
                 </div>
                 )}
               </div>
-              <Link to='/'><span className='pl-1 underline text-blue-900'>Tap here</span></Link>
               <div className="lg:col-span-2">
-                <form onSubmit={handleSubmit}  className="grid gap-3 lg:gap-5 gap-y-5 text-sm grid-rows-auto grid-cols-1 md:grid-cols-6">
+                <form onSubmit={handleSubmit}  className="grid gap-3 h-full w-full lg:gap-5 gap-y-5 text-sm grid-rows-auto grid-cols-1 md:grid-cols-6">
                   <div className="md:col-span-3">
                     <input name='AplName' required  type="text" value={formData.AplName} onChange={handleInputChange} placeholder='Appliciant Name' className="p-0 py-2 ring-0 border-gray-300 outline-none border-0 border-b placeholder:font-normal placeholder:opacity-50 placeholder:text-black w-full "/>
                   </div>

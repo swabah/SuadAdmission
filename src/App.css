@@ -6,12 +6,12 @@
 body{
     font-family: 'Ubuntu';
     position: relative;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
 }
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     width: 3px;
     border-radius:5px;
   }
   body::-webkit-scrollbar-thumb {
     background-color: #1c415d;
-  }
+  } */
